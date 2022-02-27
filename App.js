@@ -1,18 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  const [name, setName] = useState('motasem');
+  const [person, setPerson] = useState({
+    name: 'noor',
+    age: 22,
+  });
+
+  const clickHandler = () => {
+    setName('Noor');
+    setPerson({
+      name: 'mohammed',
+      age: 32,
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.boldText}>Hello React! 😈</Text>
-      </View>
-      <View style={styles.body}>
-        <Text style={styles.boldText}>
-          Hi there <Text>Test</Text> i am new react native developer.
-        </Text>
-        <Text>Hi there i am new react native developer.</Text>
-        <Text>Hi there i am new react native developer.</Text>
+      <Text>My name is {name}</Text>
+      <Text>
+        His name is {person.name} and his age is {person.age}
+      </Text>
+      <View style={styles.buttonContainer}>
+        <Button title='Update name' onPress={clickHandler} />
       </View>
     </View>
   );
@@ -25,15 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  header: {
-    backgroundColor: 'pink',
-    padding: 20,
-  },
-  boldText: {
-    fontWeight: 'bold',
-  },
-  body: {
-    backgroundColor: 'yellow',
-    padding: 20,
+  buttonContainer: {
+    marginTop: 20,
   },
 });
